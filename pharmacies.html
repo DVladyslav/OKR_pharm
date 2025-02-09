@@ -2,21 +2,88 @@
 <html lang="uk">
 
 <head>
-    <meta http-equiv = "content-type" content = "text / html; charset = UTF-8">
+    <meta http-equiv="content-type" content="text / html; charset = UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = "author" content = "ІС-31 Дрюк Владислав">
+    <meta name="author" content="ІС-31 Дрюк Владислав">
     <title>Аптеки | MedTrustUA</title>
 </head>
 
-<body>
+<body link="blue" vlink="green" alink="red" style="background-color: #f0f8ff; font-family: Arial, sans-serif;">
     <header>
-
+        <nav>
+            <ul style="text-decoration: none; list-style-type: none;">
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="./catalogue.html">Каталог</a></li>
+                <li>Аптеки</li>
+                <li><a href="./consultations.html">Консультації</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <h2>Аптеки</h2>
+        <h2 style="text-align: center; color: #4CAF50; font-size: 30px;">Аптеки</h2>
+
+        <p style="text-align: center; color: #001cee; font-size: 20px; font-style: italic;">
+            Ласкаво просимо на сторінку аптек! Тут ви можете знайти інформацію про найближчі аптечні пункти, які
+            співпрацюють з нашим сервісом. Ми пропонуємо вам зручний спосіб знайти аптеку поблизу, ознайомитись з її
+            адресою та графіком роботи. Крім того, за допомогою інтерактивної карти ви можете знайти аптеки у вашому
+            місті та ознайомитись з актуальними пропозиціями.
+        </p>
+        <h3 style="text-align: center;">Інтерактивна мапа</h3>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1dDKrnjMJs3vcFfoE77CVYV-X2tF9jzeZ&amp;ehbc=2E312F"
+            style="width: 70%; height: 500px; border: 1px solid #000; display: block; margin: 0 auto;"
+            allowfullscreen="" loading="lazy">
+        </iframe>
+        <h3 style="text-align: center;">Найближчі наші партнери</h3>
+        <table border="1" cellpadding="10" cellspacing="0"
+            style="width: 60%; text-align: center; border-collapse: collapse; margin: 0 auto;">
+            <colgroup>
+                <col style="background-color: #add8e6; width: 25%;">
+                <col style="background-color: #ffffff; width: 25%;">
+                <col style="background-color: #ffffff; width: 25%;">
+                <col style="background-color: #add8e6; width: 25%;">
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th rowspan="2">Назва</th>
+                    <th colspan="2">Адреса</th>
+                    <th rowspan="2">Графік роботи</th>
+                </tr>
+                <tr>
+                    <th>Вулиця</th>
+                    <th>Місто</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td style="text-align: left;">Аптека №1</td>
+                    <td style="text-align: left;">Хрещатик, 22</td>
+                    <td style="text-align: center;">Київ</td>
+                    <td style="text-align: right;" rowspan="2">08:00 - 22:00</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Здорова Родина</td>
+                    <td style="text-align: left;">Дерибасівська, 10</td>
+                    <td style="text-align: center;">Київ</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Аптека Поділля</td>
+                    <td style="text-align: left;">Соборна, 5</td>
+                    <td style="text-align: center;">Київ</td>
+                    <td style="text-align: right;">Цілодобово</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: center; font-weight: bold; background-color: #d3d3d3;">Більше
+                        аптек ви можете знайти на нашій карті</td>
+                </tr>
+            </tfoot>
+        </table>
     </main>
     <footer>
-        <p>Автор документу: ІС-31 Дрюк Владислав</p>
+        <p style="text-align:center;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
 </body>
 
