@@ -90,6 +90,7 @@ nav.menu_navigation li a:hover {
     padding: 10px 20px 10px;
     color: white;
     text-align: center;
+    line-height: 1.8;
 }
 
 /* MAIN */
@@ -141,6 +142,10 @@ nav.menu_navigation li a:hover {
     padding: 20px;
     background: linear-gradient(to right, #4bc3c7cc, #d37f3e);
     color: rgb(255, 255, 255);
+}
+.nameCompany {
+    color: green;
+    font-size: xx-large;
 }
 .baner img {
     display: block;
@@ -219,20 +224,11 @@ nav.menu_navigation li a:hover {
     color: yellow;
 }
 
-.nameCompany {
-    color: green;
-    font-size: xx-large;
-}
-
 /* CATALOGUE */
 .popular-medicines {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-}
-.popular-medicines caption {
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 .popular-medicines thead tr {
     background-color: #add8e6;
@@ -253,7 +249,7 @@ nav.menu_navigation li a:hover {
 .medicine-link {
     font-style: italic;
     font-weight: bold;
-    text-decoration: none !important;
+    text-decoration: none;
     color: #0066cc;
 }
 
@@ -300,7 +296,7 @@ nav.menu_navigation li a:hover {
     background-image: url('./images/vitamins1.jpg');
 }
 .category-sport {
-    background-image: url('./images/Never-Give-Up-e1569265340948.jpeg');
+    background-image: url('./images/sport_and_health1.jpg');
 }
 .category-list {
     list-style-type: disc;
