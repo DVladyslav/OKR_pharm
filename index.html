@@ -5,112 +5,173 @@
     <meta http-equiv="content-type" content="text / html; charset = UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ІС-31 Дрюк Владислав">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        a:link {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: green;
+        }
+
+        a:active {
+            color: red;
+        }
+        body{
+            background-color: #2e8b57;
+        }
+    </style>
     <title>Головна | MedTrustUA</title>
 </head>
 
-<body link="blue" vlink="green" alink="red" style="background-color: #f0f8ff; font-family: Arial, sans-serif;">
+<body>
     <header>
-        <nav>
-            <ul style="list-style-type: none;">
-                <li>Головна</li>
-                <li><a href="./catalogue.html">Каталог</a></li>
-                <li><a href="./pharmacies.html">Аптеки</a></li>
-                <li><a href="./consultations.html">Консультації</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <a href="./index.html">
+                <img src="./images/logo.png" alt="Логотип" class="logo">
+            </a>
+            <nav class="menu_navigation">
+                <ul>
+                    <li><a href="./index.html" class="active">Головна</a></li>
+                    <li><a href="./catalogue.html">Каталог</a></li>
+                    <li><a href="./pharmacies.html">Аптеки</a></li>
+                    <li><a href="./consultations.html">Консультації</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main style="font-size:large">
-        <h2 style="text-align: center; margin:50px;">Ласкаво просимо до <font color="green" face="cursive" size="7">
-                <em>"MedTrustUA"</em>
-            </font> - найкращого помічника для пошуку ліків в Україні!</h2>
-        <a href="https://www.sanvicentefundacion.com/sites/default/files/2023-03/banner-uso-seguro-de-medicamentos.jpg"
-            target="_blank">
-            <img src="https://www.sanvicentefundacion.com/sites/default/files/2023-03/banner-uso-seguro-de-medicamentos.jpg"
-                width="70%" height="30%" alt="Банер/Ліки" style="display: block; margin: auto;">
-        </a>
+    <main>
+        <div class="search-container">
+            <form action="/search" method="GET">
+                <input type="text" id="drug-search" name="drug" placeholder="Введіть назву ліків..." required>
+                <button type="submit">Пошук</button>
+            </form>
+        </div>
+        <div class="baner">
+            <h2>Ласкаво просимо до <span class="nameCompany"><em>"MedTrustUA"</em></span> - найкращого помічника для
+                пошуку ліків в Україні!</h2>
+        </div>
+        <div class="infoText">
+            <p>Наш сервіс допоможе Вам
+                знайти необхідні медикаменти, отримати консультацію лікаря та дізнатися, де їх можна
+                придбати за найкращою ціною.</p>
+        </div>
+        <h2 class="headerText">Путівник по сайту</h2>
 
-        <p style="color: #001cee; font-size: 20px; font-style: italic;" align="center">Наш сервіс допоможе Вам
-            знайти необхідні медикаменти, отримати консультацію лікаря та дізнатися, де їх можна
-            придбати за найкращою ціною.</p>
-        <h3 style="text-align: center; color: #4CAF50; font-size: 30px;">Путівник по сайту</h3>
-
-        <p style="font-size: large;">Наш сайт "MedTrustUA" розділений на чотири основні сторінки, кожна з яких надає
-            корисну інформацію та
-            функціональність:</p>
-
+        <p style="font-size: larger; color: #066e8d; font-weight: bold; line-height: 1.6;">Наш сайт "MedTrustUA" розділений на чотири основні сторінки, кожна з яких надає корисну інформацію та функціональність:</p>
         <ul>
-            <li><strong style="color: #2e8b57;">Головна</strong> – На цій сторінці ви знайдете загальну інформацію про
-                <a href="#about">"MedTrustUA"</a>, нашу місію,
-                історію та основні послуги. Також ви можете дізнатися про наші <a href="#contacts">контакти</a> та
-                звернутися за допомогою, якщо
-                це необхідно.
+            <li><strong class="strong-green">Головна</strong> – На цій сторінці ви знайдете загальну інформацію
+                про <a href="#about">"MedTrustUA"</a>, нашу місію, історію та основні послуги. Також ви можете дізнатися про наші 
+                <a href="#contacts">контакти</a> та звернутися за допомогою, якщо це необхідно.
             </li>
-            <li><strong style="color: #2e8b57;">Каталог</strong> – В розділі "Каталог" ви зможете знайти широкий вибір
-                медикаментів,
-                ознайомитися з їхніми характеристиками та цінами. Тут також є можливість фільтрувати ліки за різними
-                критеріями, щоб знайти найкращі варіанти для вас.</li>
-            <li><strong style="color: #2e8b57;">Аптеки</strong> – У розділі "Аптеки" ви можете дізнатися, де придбати
-                необхідні ліки. Ми надаємо
-                актуальну інформацію про наявність препаратів у аптеках, які знаходяться найближче до вас, а також їхні
-                контактні дані.</li>
-            <li><strong style="color: #2e8b57;">Консультації</strong> – На сторінці "Консультації" ви можете отримати
-                професійну медичну
-                допомогу від кваліфікованих лікарів. Ви зможете задати питання, отримати рекомендації щодо лікування та
-                профілактики захворювань, а також проконсультуватися з приводу вибору ліків.</li>
+            <li><strong class="strong-green">Каталог</strong> – В розділі "Каталог" ви зможете знайти широкий вибір медикаментів, 
+                ознайомитися з їхніми характеристиками та цінами. Тут також є можливість фільтрувати ліки за різними критеріями, 
+                щоб знайти найкращі варіанти для вас.
+            </li>
+            <li><strong class="strong-green">Аптеки</strong> – У розділі "Аптеки" ви можете дізнатися, де придбати необхідні ліки. 
+                Ми надаємо актуальну інформацію про наявність препаратів у аптеках, які знаходяться найближче до вас, а також їхні 
+                контактні дані.
+            </li>
+            <li><strong class="strong-green">Консультації</strong> – На сторінці "Консультації" ви можете отримати професійну 
+                медичну допомогу від кваліфікованих лікарів. Ви зможете задати питання, отримати рекомендації щодо лікування та 
+                профілактики захворювань, а також проконсультуватися з приводу вибору ліків.
+            </li>
         </ul>
-
-        <h3 id="about">Про нас</h3>
-        <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки швидко та
+        
+        <h3 class="headerSpan" id="about">Про нас</h3>
+        <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки швидко
+            та
             зручно.
             Заснований у 2020 році, ми стали одним із лідерів у галузі онлайн-пошуку медикаментів та медичних
-            консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг максимально
+            консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг
+            максимально
             зручним та ефективним для кожного українця.</p>
 
-        <p>Ми працюємо з усіма провідними аптечними мережами країни, що дозволяє нам надавати актуальні дані про
-            наявність ліків у найближчих аптеках. Завдяки цьому наші користувачі можуть швидко дізнатися, де придбати
-            необхідні препарати за найкращими цінами.</p>
-
-        <p>Окрім пошуку ліків, "MedTrustUA" надає можливість отримати консультацію кваліфікованих лікарів. Ми розуміємо
-            важливість своєчасної медичної допомоги, тому забезпечуємо доступ до онлайн-консультацій з лікарями різних
-            спеціальностей. Ви можете задати питання спеціалісту, отримати корисні поради щодо лікування та профілактики
-            захворювань, а також отримати рекомендації щодо вибору препаратів для вашого здоров’я.</p>
-
-        <p>Наші фахівці регулярно оновлюють базу даних, щоб надавати найсучаснішу інформацію, що відповідає останнім
-            медичним стандартам. Ми працюємо для того, щоб кожен міг легко знайти необхідні ліки, отримати якісну
-            медичну допомогу в будь-якому куточку України та забезпечити своє здоров’я на найвищому рівні.</p>
-
-        <p>"MedTrustUA" – це ваш надійний партнер на шляху до здоров’я, де б ви не знаходились. Наші послуги доступні в
+        <p>"MedTrustUA" – це ваш надійний партнер на шляху до здоров’я, де б ви не знаходились. Наші послуги
+            доступні в
             будь-який час, і ми завжди готові допомогти вам у вирішенні медичних питань.</p>
 
-        <p>Ми з гордістю заявляємо, що на сьогоднішній день "MedTrustUA" обслуговує <em>більше 1 мільйона
-                користувачів</em> по
-            всій Україні. І це лише початок – ми маємо амбіції розвиватися і ставати ще більш корисними для наших
-            користувачів.</p>
+        <h3 class="headerSpan">Чому MedTrustUA?</h3>
 
-        <h3>Корисні посилання</h3>
+        <section class="benefits">
+            <div class="benefit">
+                <div class="benefit-header">
+                    <img src="./images/icon1.jpg" alt="Швидкий пошук ліків" class="benefit-icon">
+                    <h4>Швидкий пошук ліків</h4>
+                </div>
+                <p class="benefit-description">
+                    Знаходьте необхідні медикаменти у найближчих аптеках за найкращими цінами.
+                </p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-header">
+                    <img src="./images/icon2.jpg" alt="Перевірені аптеки" class="benefit-icon">
+                    <h4>Перевірені аптеки</h4>
+                </div>
+                <p class="benefit-description">
+                    Співпрацюємо лише з ліцензованими аптеками по всій Україні.
+                </p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-header">
+                    <img src="./images/icon3.jpg" alt="Консультації лікарів" class="benefit-icon">
+                    <h4>Консультації лікарів</h4>
+                </div>
+                <p class="benefit-description">
+                    Отримуйте поради кваліфікованих спеціалістів онлайн.
+                </p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-header">
+                    <img src="./images/icon4.jpg" alt="Оплата в аптеці" class="benefit-icon">
+                    <h4>Оплата в аптеці</h4>
+                </div>
+                <p class="benefit-description">
+                    Замовляйте онлайн – оплачуйте на місці готівкою чи карткою.
+                </p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-header">
+                    <img src="./images/icon5.jpg" alt="Вибір багатьох" class="benefit-icon">
+                    <h4>Вибір багатьох</h4>
+                </div>
+                <p class="benefit-description">
+                    "MedTrustUA" обслуговує <em>більше 1 мільйона користувачів</em> по всій Україні
+                </p>
+            </div>
+        </section>
+        <h3 class="headerSpan">Корисні посилання</h3>
         <ul>
             <li><a href="./catalogue.html#search">Перейти до пошуку ліків</a></li>
             <li><a href="https://moz.gov.ua/uk" target="_blank">Міністерство охорони здоров'я України</a></li>
-            <li><a href="https://www.who.int/" target="_blank">World Health Organization | Всесвітня організація охорони
-                    здоров'я</a></li>
+            <li><a href="https://www.who.int/" target="_blank">World Health Organization | Всесвітня організація
+                    охорони здоров'я</a></li>
         </ul>
-        <h3 style="text-align: center;" id="contacts">Контакти</h3>
+        <br>
+        <div class="contacts">
+            <h3 id="contacts">Контакти</h3>
 
-        <p style="font-size:large">Ми завжди готові відповісти на ваші запитання та допомогти. Залиште ваше
-            повідомлення, і ми обов'язково з вами зв'яжемося в найкоротший
-            термін. Зв'яжіться з нами за
-            наступними контактами:</p>
+            <p>Ми завжди готові відповісти на ваші запитання та допомогти. Залиште ваше
+                повідомлення, і ми обов'язково з вами зв'яжемося в найкоротший
+                термін. Зв'яжіться з нами за
+                наступними контактами:</p>
 
-        <ul style="list-style-type: none; padding: 0;">
-            <li><strong>Телефон:</strong> +38 (044) 123-45-67</li>
-            <li><strong>Електронна пошта:</strong> support@medtrustua.com</li>
-            <li><strong>Адреса:</strong> Київ, вул. Пряма, 12, офіс 5</li>
-            <li><strong>Час роботи:</strong> Понеділок - П'ятниця: 9:00 - 18:00</li>
-        </ul>
-        <p style="text-align: center;"></p>
+            <ul>
+                <li><strong>Телефон:</strong> +38 (044) 123-45-67</li>
+                <li><strong>Електронна пошта:</strong> support@medtrustua.com</li>
+                <li><strong>Адреса:</strong> Київ, вул. Пряма, 12, офіс 5</li>
+                <li><strong>Час роботи:</strong> Понеділок - П'ятниця: 9:00 - 18:00</li>
+            </ul>
+        </div>
     </main>
     <footer>
-        <p style="text-align:center;">Автор документу: ІС-31 Дрюк Владислав</p>
+        <p class="author">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
 </body>
 

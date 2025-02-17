@@ -5,27 +5,38 @@
     <meta http-equiv="content-type" content="text / html; charset = UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ІС-31 Дрюк Владислав">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <title>Консультації | MedTrustUA</title>
 </head>
 
-<body link="blue" vlink="green" alink="red" style="background-color: #f0f8ff; font-family: Arial, sans-serif;">
+<body>
     <header>
-        <nav>
-            <ul style="list-style-type: none;">
-                <li><a href="./index.html">Головна</a></li>
-                <li><a href="./catalogue.html">Каталог</a></li>
-                <li><a href="./pharmacies.html">Аптеки</a></li>
-                <li>Консультації</li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <a href="./index.html">
+                <img src="./images/logo.png" alt="Логотип" class="logo">
+            </a>
+            <nav class="menu_navigation">
+                <ul>
+                    <li><a href="./index.html">Головна</a></li>
+                    <li><a href="./catalogue.html">Каталог</a></li>
+                    <li><a href="./pharmacies.html">Аптеки</a></li>
+                    <li><a href="./consultations.html" class="active">Консультації</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <h2 style="text-align: center; color: #4CAF50; font-size: 30px;">Консультації</h2>
-        <p style="text-align: center; color: #001cee; font-size: 20px; font-style: italic;">
-            Ласкаво просимо на сторінку консультацій! Тут ви зможете отримати консультації від професійних лікарів,
-            дізнатися більше про здоров'я, а також отримати відповіді на ваші запитання. Ми надаємо зручний сервіс для
-            зв'язку з фахівцями, де ви можете отримати кваліфіковану допомогу без необхідності виходити з дому.
-        </p>
+        <h2 class="headerText">Консультації</h2>
+        <div class="infoText">
+            <p>
+                Ласкаво просимо на сторінку консультацій! Тут ви зможете отримати консультації від професійних лікарів,
+                дізнатися більше про здоров'я, а також отримати відповіді на ваші запитання. Ми надаємо зручний сервіс
+                для зв'язку з фахівцями, де ви можете отримати кваліфіковану допомогу без необхідності виходити з дому.
+            </p>
+        </div>
+
         <p style="text-align: center; font-size: 18px; color: #333;">
             Щоб переглянути інформацію про лікаря, натисніть на його ім'я у списку нижче.
         </p>
@@ -48,13 +59,15 @@
                 </ul>
             </li>
         </ul>
+        <div class="consultationFrame">
+            <iframe name="doctor-frame"
+                style="width: 70%; height: 470px; border: 1px solid #000; display:block; margin:0 auto;"
+                allowfullscreen="" loading="lazy" scrolling="no"></iframe>
+        </div>
 
-        <iframe name="doctor-frame" src="about:blank"
-            style="width: 40%; height: 450px; border: 1px solid #000; display:block; margin:0 auto;" allowfullscreen=""
-            loading="lazy" scrolling="no"></iframe>
     </main>
     <footer>
-        <p style="text-align:center;">Автор документу: ІС-31 Дрюк Владислав</p>
+        <p class="author">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
 </body>
 
