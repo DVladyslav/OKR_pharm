@@ -8,29 +8,12 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <style>
-        a:link {
-            color: blue;
-            text-decoration: none;
-        }
-
-        a:visited {
-            color: green;
-        }
-
-        a:active {
-            color: red;
-        }
-
-        body {
-            background-color: #2e8b57;
-        }
-    </style>
     <title>Головна | MedTrustUA</title>
 </head>
 
 <body>
     <header>
+        <!--div 1   +   --> 
         <div class="header-container">
             <a href="./index.html">
                 <img src="./images/logo.png" alt="Логотип" class="logo">
@@ -51,7 +34,7 @@
                 <input type="text" id="drug-search" name="drug" placeholder="Введіть назву ліків..." required>
                 <button type="submit">Пошук</button>
             </form>
-        </div>
+        </div>            <!-- span 1   +    -->
         <div class="baner">
             <h2>Ласкаво просимо до <span class="nameCompany"><em>"MedTrustUA"</em></span> - найкращого помічника для
                 пошуку ліків в Україні!</h2>
@@ -92,18 +75,21 @@
         </ul>
 
         <h3 class="headerSpan" id="about">Про нас</h3>
-        <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки швидко
-            та
-            зручно.
-            Заснований у 2020 році, ми стали одним із лідерів у галузі онлайн-пошуку медикаментів та медичних
-            консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг
-            максимально
-            зручним та ефективним для кожного українця.</p>
-
-        <p>"MedTrustUA" – це ваш надійний партнер на шляху до здоров’я, де б ви не знаходились. Наші послуги
-            доступні в
-            будь-який час, і ми завжди готові допомогти вам у вирішенні медичних питань.</p>
-
+        <div class="content">
+            <div class="left-block">
+                <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки швидко
+                    та
+                    зручно. Заснований у 2020 році, ми стали одним із лідерів у галузі онлайн-пошуку медикаментів та медичних
+                    консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг максимально
+                    зручним та ефективним для кожного українця.</p>
+            </div>
+            <div class="right-block">
+                <p>"MedTrustUA" – це ваш надійний партнер на шляху до здоров’я, де б ви не знаходились. Наші послуги
+                    доступні в
+                    будь-який час, і ми завжди готові допомогти вам у вирішенні медичних питань.</p>
+            </div>
+        </div>
+        
         <h3 class="headerSpan">Чому MedTrustUA?</h3>
 
         <section class="benefits">
@@ -155,6 +141,16 @@
                 </p>
             </div>
         </section>
+        <h3 class="headerSpan">Відзнаки</h3><br>
+        <p class="instruction">
+            Щоб збільшити відзнаку, наведіть
+        </p>
+        <div class="image-container-achieve">
+            <div class="image-box-achieve"><img src="./images/dyplom1.jpg" alt="Image 1"></div>
+            <div class="image-box-achieve"><img src="./images/certificate2.jpg" alt="Image 2"></div>
+            <div class="image-box-achieve"><img src="./images/dyplom3.jpg" alt="Image 3"></div>
+        </div>
+
         <h3 class="headerSpan">Корисні посилання</h3>
         <ul>
             <li><a href="./catalogue.html#search">Перейти до пошуку ліків</a></li>
@@ -163,21 +159,24 @@
                     охорони здоров'я</a></li>
         </ul>
         <br>
+        <!-- div 2   +   -->
         <div class="contacts">
             <h3 id="contacts">Контакти</h3>
-
-            <p>Ми завжди готові відповісти на ваші запитання та допомогти. Залиште ваше
-                повідомлення, і ми обов'язково з вами зв'яжемося в найкоротший
-                термін. Зв'яжіться з нами за
-                наступними контактами:</p>
-
-            <ul>
-                <li><strong>Телефон:</strong> +38 (044) 123-45-67</li>
-                <li><strong>Електронна пошта:</strong> support@medtrustua.com</li>
-                <li><strong>Адреса:</strong> Київ, вул. Пряма, 12, офіс 5</li>
-                <li><strong>Час роботи:</strong> Понеділок - П'ятниця: 9:00 - 18:00</li>
-            </ul>
+            <div class="contacts contacts-text">
+                <p>Ми завжди готові відповісти на ваші запитання та допомогти. Залиште ваше
+                    повідомлення, і ми обов'язково з вами зв'яжемося в найкоротший
+                    термін. </p>
+            </div>
+            <div class="contacts contacts-list">
+                <ul>
+                    <li><strong>Телефон:</strong> +38 (044) 123-45-67</li>
+                    <li><strong>Електронна пошта:</strong> support@medtrustua.com</li>
+                    <li><strong>Адреса:</strong> Київ, вул. Пряма, 12, офіс 5</li>
+                    <li><strong>Час роботи:</strong> Понеділок - П'ятниця: 9:00 - 18:00</li>
+                </ul>
+            </div>
         </div>
+
     </main>
     <footer>
         <p>Автор документу: ІС-31 Дрюк Владислав</p>
