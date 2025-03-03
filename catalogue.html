@@ -28,9 +28,6 @@
         </div>
     </header>
     <main>
-
-        <!-- span 2  +  -->
-
         <h1 class="headerText">Каталог</h1>
         <p>Від
             <i><strong>болючих головних болей</strong></i> до <i><strong>серйозних хронічних захворювань</strong></i> —
@@ -58,7 +55,10 @@
                 </p>
             </div>
         </section>
-
+        <script>
+            // Використання document.write
+            document.write('<p style="color: gray; text-transform: uppercase; text-align: center;">Самолікування шкодить вашому здоров&rsquo;ю</p>');
+        </script>
         <h3 class="headerSpan">Популярні ліки в Україні</h3>
         <table class="popular-medicines">
             <thead>
@@ -115,8 +115,7 @@
                 </tr>
             </tbody>
         </table>
-        <h3 class="headerSpan" id="search">Як зробити замовлення?</h3>
-        <!-- span 3  + -->
+        <h3 class="headerSpan" id="search" style="cursor: pointer;">Як зробити замовлення?</h3>
         <div class="how-to-order">
             <ol class="how-to-order-list">
                 <li><strong>Знайдіть товар.</strong> Використовуйте пошук або каталог, щоб знайти потрібний товар, та
@@ -131,7 +130,6 @@
             </ol>
         </div>
 
-        <!--div 3   +    -->
         <div class="category category-medicaments">
             <h3>Ліки та профілактичні засоби</h3>
             <ul class="category-list">
@@ -188,8 +186,52 @@
 
     </main>
     <footer>
-        <p>Автор документу: ІС-31 Дрюк Владислав</p>
+        <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
+    <script>
+        //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+        function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+            alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
+        }
+        document.getElementById("author-info").addEventListener("click", function () {
+            showDeveloperInfo("Дрюк", "Владислав");
+        });
+        // Використання методу getElementById
+        const howToOrderHeader = document.getElementById("search");
+        // Використання властивості DOM-вузла innerHTML
+        howToOrderHeader.addEventListener("click", function () {
+            alert(this.innerHTML + "\n(інструкція до оновленої системи замовлення ліків)");
+        });
+        // Використання властивості DOM-вузла data
+        setTimeout(() => {
+            howToOrderHeader.firstChild.data = "Як придбати ліки?";
+        }, 5000);
+        // Використання властивості DOM-вузла nodeValue 
+        setTimeout(() => {
+            howToOrderHeader.firstChild.nodeValue = "Як придбати ліки \uD83E\uDD14 ? ";
+        }, 6500);
+        const paragraph = document.querySelector(".promotion-text");
+        // Використання властивості DOM-вузла textContent 
+        setTimeout(() => {
+            paragraph.textContent = " Оновлена пропозиція 🔥 ! Знижки до 50% на популярні ліки! Поспішайте, акція діє обмежений час!";
+        }, 10000);
+        // Використання властивості DOM-вузла innerHTML
+        setTimeout(() => {
+            paragraph.innerHTML = "🔥 Оновлена пропозиція! 🔥<br> Знижки до <strong><i>50%</i></strong> на популярні ліки! <br> Поспішайте, акція діє обмежений час!";
+        }, 15000);
+        setTimeout(() => {
+            const header = document.querySelector(".headerSpan");
+            header.firstChild.textContent = "Популярні ліки в Україні (березень 2025)";
+        }, 20000);
+        const howToOrderList = document.querySelector(".how-to-order");
+        // Використання властивості DOM-вузла outerHTML
+        console.log(howToOrderList.outerHTML);
+        // Використання методу querySelectorAll 
+        const categoryItems = document.querySelectorAll(".category-list li");
+        categoryItems.forEach(item => {
+            console.log(item.textContent);
+        });
+    </script>
 </body>
 
 </html>

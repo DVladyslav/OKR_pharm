@@ -9,6 +9,31 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <title>Консультації | MedTrustUA</title>
+    <style>
+        .review {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .divider {
+            background-color: #066e8d;
+            height: 5px;
+            border: 1px solid black;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            color: green;
+            font-weight: bold;
+        }
+
+        .rating {
+            color: gold;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -59,11 +84,53 @@
         <div class="consultationFrame">
             <iframe name="doctor-frame" allowfullscreen="" loading="lazy" scrolling="no"></iframe>
         </div>
+        <button onclick="compareStrings()">Порівняти рядки</button>
+        <h1>Додати відгук</h1>
+        <div id="reviewForm">
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" required><br><br>
 
+            <label for="reviewText">Відгук:</label><br>
+            <textarea id="reviewText" rows="4" required></textarea><br><br>
+
+            <label for="rating">Оцінка (1-5):</label>
+            <input type="number" id="rating" min="1" max="5" required><br><br>
+
+            <button onclick="addReviewFromInput()">Додати відгук</button>
+        </div>
+
+        <h2>Відгуки</h2>
+        <div id="reviews"></div>
     </main>
     <footer>
-        <p>Автор документу: ІС-31 Дрюк Владислав</p>
+        <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
+    <script>
+        // Застосування функцій alert, prompt, confirm у внутрішньому скрипті.
+        alert("Ласкаво просимо на сторінку Консультації!");
+        let userName = prompt("Як вас звати?", "Гість");
+        if (!userName || userName.trim() === "") {
+            alert("Необхідно ввести ім'я! Спробуйте ще раз пізніше. Повертаємося на головну сторінку...");
+            window.location.href = "./index.html";
+        }
+        else {
+            let isAdult = confirm(`Консультації надаються тільки повнолітнім особам. ${userName}, Вам є 18 років? Якщо так, то натисніть ОК.`);
+            if (!isAdult) {
+                alert("Вибачте, консультації доступні лише повнолітнім користувачам.");
+                window.location.href = "./index.html";
+            }
+        }
+
+       //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+       function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+            alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
+        }
+        document.getElementById("author-info").addEventListener("click", function () {
+            showDeveloperInfo("Дрюк", "Владислав");
+        });
+    </script>
+    <script src="./script.js"></script>
+
 </body>
 
 </html>

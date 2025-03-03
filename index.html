@@ -13,7 +13,6 @@
 
 <body>
     <header>
-        <!--div 1   +   --> 
         <div class="header-container">
             <a href="./index.html">
                 <img src="./images/logo.png" alt="Логотип" class="logo">
@@ -34,7 +33,7 @@
                 <input type="text" id="drug-search" name="drug" placeholder="Введіть назву ліків..." required>
                 <button type="submit">Пошук</button>
             </form>
-        </div>            <!-- span 1   +    -->
+        </div>
         <div class="baner">
             <h2>Ласкаво просимо до <span class="nameCompany"><em>"MedTrustUA"</em></span> - найкращого помічника для
                 пошуку ліків в Україні!</h2>
@@ -77,10 +76,13 @@
         <h3 class="headerSpan" id="about">Про нас</h3>
         <div class="content">
             <div class="left-block">
-                <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки швидко
+                <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки
+                    швидко
                     та
-                    зручно. Заснований у 2020 році, ми стали одним із лідерів у галузі онлайн-пошуку медикаментів та медичних
-                    консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг максимально
+                    зручно. Заснований у 2020 році, ми стали одним із лідерів у галузі онлайн-пошуку медикаментів та
+                    медичних
+                    консультацій в Україні. Нашу місію можна описати як прагнення зробити доступ до медичних послуг
+                    максимально
                     зручним та ефективним для кожного українця.</p>
             </div>
             <div class="right-block">
@@ -89,7 +91,7 @@
                     будь-який час, і ми завжди готові допомогти вам у вирішенні медичних питань.</p>
             </div>
         </div>
-        
+
         <h3 class="headerSpan">Чому MedTrustUA?</h3>
 
         <section class="benefits">
@@ -159,7 +161,6 @@
                     охорони здоров'я</a></li>
         </ul>
         <br>
-        <!-- div 2   +   -->
         <div class="contacts">
             <h3 id="contacts">Контакти</h3>
             <div class="contacts contacts-text">
@@ -179,8 +180,19 @@
 
     </main>
     <footer>
-        <p>Автор документу: ІС-31 Дрюк Владислав</p>
+        <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
+    <script src="./script.js"></script>
+    <script>
+        //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+        function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+            alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
+        }
+        document.getElementById("author-info").addEventListener("click", function () {
+            showDeveloperInfo("Дрюк", "Владислав");
+        });
+        window.onload = dialogWithUser;
+    </script>
 </body>
 
 </html>

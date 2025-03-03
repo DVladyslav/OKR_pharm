@@ -86,8 +86,27 @@
         </table>
     </main>
     <footer>
-        <p>Автор документу: ІС-31 Дрюк Владислав</p>
+        <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
+    <script>
+      //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+      function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+            alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
+        }
+        document.getElementById("author-info").addEventListener("click", function () {
+            showDeveloperInfo("Дрюк", "Владислав");
+        });
+        // Зміна фону сторінки на 30 секунд
+        document.body.style.backgroundColor = "lightgreen";
+        setTimeout(() => {
+            document.body.style.backgroundColor = "#f0f8ff";
+        }, 30000);
+
+        // Перенаправлення браузера на іншу сторінку
+        setTimeout(() => {
+            location.href = "https://www.who.int/";
+        }, 35000);
+    </script>
 </body>
 
 </html>
