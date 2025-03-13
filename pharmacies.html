@@ -40,6 +40,17 @@
             style="width: 70%; height: 500px; border: 1px solid #000; display: block; margin: 0 auto;"
             allowfullscreen="" loading="lazy">
         </iframe>
+
+        <p style="text-align: center;">Оцініть зручність інтерактивної карти. Натисніть від 1 до 5:</p>
+        <div id="rating-container" class="rating">
+            <span class="circle" data-rating="1">⚪</span>
+            <span class="circle" data-rating="2">⚪</span>
+            <span class="circle" data-rating="3">⚪</span>
+            <span class="circle" data-rating="4">⚪</span>
+            <span class="circle" data-rating="5">⚪</span>
+        </div>
+        <div id="rating-result" class="rating-result"></div>
+        
         <h3 class="headerSpan">Найближчі наші партнери</h3>
         <table class="pharmacy-table">
             <colgroup>
@@ -84,28 +95,83 @@
                 </tr>
             </tfoot>
         </table>
+        <p id="word-container">
+            Не втратьте шанс отримати знижку 10% на будь-які ліки від наших найближчих партнерів. Для цього виконайте
+            певну дію на цій сторінці. Підказка: <span data-counter="0" class="persistent-word"
+                id="rightWord">Наполегливість</span> -
+            чудова риса характеру особистості, а от <span data-counter="0" class="persistent-word"
+                id="badWord">ледачість</span> - погана.
+        </p>
+
     </main>
     <footer>
         <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
     <script>
-      //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
-      function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+        //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+        function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
             alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
         }
         document.getElementById("author-info").addEventListener("click", function () {
             showDeveloperInfo("Дрюк", "Владислав");
         });
-        // Зміна фону сторінки на 30 секунд
-        document.body.style.backgroundColor = "lightgreen";
-        setTimeout(() => {
-            document.body.style.backgroundColor = "#f0f8ff";
-        }, 30000);
 
-        // Перенаправлення браузера на іншу сторінку
-        setTimeout(() => {
-            location.href = "https://www.who.int/";
-        }, 35000);
+        // Виконання завдання: Видалити об’єкт, використовуючи removeEventListener
+        const ratingContainer = document.getElementById('rating-container');
+        const ratingCircles = document.querySelectorAll('.rating .circle');
+        const ratingResult = document.getElementById('rating-result');
+        function handleRatingClick(event) {
+            const rating = event.currentTarget.getAttribute('data-rating');
+            alert(`Ви поставили оцінку ${rating}/5. Дякуємо за оцінку!`);
+            ratingResult.textContent = `Ваша відповідь: ${rating}/5`;
+            ratingCircles.forEach(circle => {
+                if (parseInt(circle.getAttribute('data-rating')) > rating) {
+                    circle.remove();
+                }
+            });
+            removeRatingHandler();
+        }
+        function removeRatingHandler() {
+            ratingCircles.forEach(circle => {
+                circle.removeEventListener('click', handleRatingClick);
+            });
+        }
+        ratingCircles.forEach(circle => {
+            circle.addEventListener('click', handleRatingClick);
+        });
+
+        // Виконання завдання: Застосувати прийом проектування «Поведінка» (додавання елементам
+        // поведінки behavior за допомогою атрибута data-*).
+        const wordContainer = document.getElementById('word-container');
+        wordContainer.addEventListener('click', function (event) {
+            if (event.target.dataset.counter !== undefined) {
+                const clickedWord = event.target;
+                let counter = parseInt(clickedWord.getAttribute('data-counter')) || 0;
+                counter++;
+                clickedWord.setAttribute('data-counter', counter);
+                if (clickedWord.id === 'rightWord' && counter >= 5) {
+                    alert('Ви натискали на слово "Наполегливість" 5 разів!\nЗв\'яжіться з нами, щоб отримати знижку 10% на будь-які ліки від наших найближчих партнерів:\nEmail: support@medtrustua.com\nТелефон: +38 (044) 123-45-67');
+                    clickedWord.setAttribute('data-counter', 0);
+                }
+                if (clickedWord.id === 'badWord' && counter >= 5) {
+                    alert('Ви натискали на слово "Ледачість" 5 разів!\nМоже вам краще спробувати натискати на "Наполегливість"!');
+                    clickedWord.setAttribute('data-counter', 0); 
+                }
+            }
+        });
+
+
+        // ============================= ЛАБОРАТОРНА РОБОТА 6 =============================  
+        // // Зміна фону сторінки на 30 секунд
+        // document.body.style.backgroundColor = "lightgreen";
+        // setTimeout(() => {
+        //     document.body.style.backgroundColor = "#f0f8ff";
+        // }, 30000);
+
+        // // Перенаправлення браузера на іншу сторінку
+        // setTimeout(() => {
+        //     location.href = "https://www.who.int/";
+        // }, 35000);
     </script>
 </body>
 

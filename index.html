@@ -73,7 +73,7 @@
             </li>
         </ul>
 
-        <h3 class="headerSpan" id="about">Про нас</h3>
+        <h3 class="headerSpan" id="about" style="cursor: pointer">Про нас ▼</h3>
         <div class="content">
             <div class="left-block">
                 <p><strong>"MedTrustUA"</strong> – це сучасний портал, який допомагає українцям знайти необхідні ліки
@@ -192,6 +192,27 @@
             showDeveloperInfo("Дрюк", "Владислав");
         });
         window.onload = dialogWithUser;
+
+        //Призначені одній події різні обробники (функції-обробники) за допомогою addEventListener.
+        const aboutHeader = document.getElementById("about");
+        const contentBlock = document.querySelector(".content");
+        let clickCount = 0;
+        function toggleContentVisibility() {
+            clickCount++;
+            contentBlock.style.display = (contentBlock.style.display === "none" || contentBlock.style.display === "") ? "block" : "none";
+        }
+        function toggleHeaderColor() {
+            aboutHeader.classList.toggle("active");
+        }
+        function logToConsole() {
+            if (clickCount % 2 !== 0) {
+            console.log("Заголовок 'Про нас' був натиснутий! Блоки інформації відображені!");
+            }
+        }
+        aboutHeader.addEventListener("click", toggleContentVisibility);
+        aboutHeader.addEventListener("click", toggleHeaderColor);
+        aboutHeader.addEventListener("click", logToConsole);
+
     </script>
 </body>
 

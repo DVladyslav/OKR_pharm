@@ -80,11 +80,36 @@
                     <li><a href="./doctors_frame.html#doctor4" target="doctor-frame">Петренко Ірина Сергіївна</a></li>
                 </ul>
             </li>
+            <li>Кардіологи
+                <ul>
+                    <li><a href="./doctors_frame.html#doctor6" target="doctor-frame">Романенко Олег Дмитрович</a></li>
+                </ul>
+            </li>
+            <li>Психіатри
+                <ul>
+                    <li><a href="./doctors_frame.html#doctor7" target="doctor-frame">Даниленко Ірина Володимирівна</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
+
+        <p class="instruction">
+            Або скористайтеся фільтрами з меню нижче та натисніть на ім'я
+        </p>
+        <div class="menu-container">
+            <button data-action="showTherapists">Терапевти</button>
+            <button data-action="showSurgeons">Хірурги</button>
+            <button data-action="showDermatologists">Дерматологи</button>
+            <button data-action="showCardiologists">Кардіологи</button>
+            <button data-action="showPsychiatrist">Психіатри</button>
+            <button data-action="showAll">Вивести всіх лікарів</button>
+        </div>
+        <div id="doctorListContainer"></div>
+
         <div class="consultationFrame">
             <iframe name="doctor-frame" allowfullscreen="" loading="lazy" scrolling="no"></iframe>
         </div>
-        <button onclick="compareStrings()">Порівняти рядки</button>
+        <!-- <button onclick="compareStrings()">Порівняти рядки</button> -->
         <h1>Додати відгук</h1>
         <div id="reviewForm">
             <label for="name">Ім'я:</label>
@@ -120,14 +145,116 @@
                 window.location.href = "./index.html";
             }
         }
-
-       //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
-       function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
+        //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
+        function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
             alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
         }
         document.getElementById("author-info").addEventListener("click", function () {
             showDeveloperInfo("Дрюк", "Владислав");
         });
+
+        // Виконання завдання: Створити меню (кілька кнопок), додати одни обробник для всього меню і атрибути data-* 
+        // для кожної кнопки, в відповідності з методами, які вони викликають.
+        // Конструктор класу DoctorMenu
+        class DoctorMenu {
+            constructor(elem, doctors) {
+                this._elem = elem;
+                this.doctors = doctors;
+                this._elem.onclick = this.onClick.bind(this);
+            }
+
+            setActiveButton(button) {
+                document.querySelectorAll('.menu-container button').forEach(btn => {
+                    btn.classList.remove('active-btn');
+                });
+                button.classList.add('active-btn');
+            }
+
+            showTherapists(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('therapists');
+            }
+
+            showSurgeons(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('surgeons');
+            }
+
+            showDermatologists(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('dermatologists');
+            }
+
+            showCardiologists(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('cardiologists');
+            }
+
+            showPsychiatrist(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('psychiatrists');
+            }
+
+            showAll(event) {
+                this.setActiveButton(event.target);
+                this.displayDoctors('all');
+            }
+
+            onClick(event) {
+                let action = event.target.dataset.action;
+                if (action) {
+                    this[action](event);
+                }
+            }
+
+            // Функція для відображення лікарів
+            displayDoctors(category) {
+                const doctorListContainer = document.getElementById('doctorListContainer');
+                doctorListContainer.innerHTML = '';
+
+                let doctorsToShow = [];
+                if (category === 'all') {
+                    doctorsToShow = [...this.doctors.therapists, ...this.doctors.surgeons, ...this.doctors.dermatologists, ...this.doctors.cardiologists, ...this.doctors.psychiatrists];
+                } else {
+                    doctorsToShow = this.doctors[category];
+                }
+
+                const doctorList = document.createElement('ul');
+                doctorsToShow.forEach(doctor => {
+                    const listItem = document.createElement('li');
+                    const doctorLink = document.createElement('a');
+                    doctorLink.href = doctor.link;
+                    doctorLink.target = 'doctor-frame';
+                    doctorLink.textContent = doctor.name;
+                    listItem.appendChild(doctorLink);
+                    doctorList.appendChild(listItem);
+                });
+
+                doctorListContainer.appendChild(doctorList);
+            }
+        }
+
+        // Дані лікарів
+        const doctors = {
+            therapists: [
+                { name: 'Коваль Олександр Павлович', link: './doctors_frame.html#doctor1' },
+                { name: 'Сидоров Іван Миколайович', link: './doctors_frame.html#doctor5' }
+            ],
+            surgeons: [
+                { name: 'Мельник Василь Іванович', link: './doctors_frame.html#doctor2' }
+            ],
+            dermatologists: [
+                { name: 'Левченко Марина Олексіївна', link: './doctors_frame.html#doctor3' },
+                { name: 'Петренко Ірина Сергіївна', link: './doctors_frame.html#doctor4' }
+            ],
+            cardiologists: [
+                { name: 'Романенко Олег Дмитрович', link: './doctors_frame.html#doctor6' }
+            ],
+            psychiatrists: [
+                { name: 'Даниленко Ірина Володимирівна', link: './doctors_frame.html#doctor7' }
+            ]
+        };
+        new DoctorMenu(document.querySelector('.menu-container'), doctors);
     </script>
     <script src="./script.js"></script>
 

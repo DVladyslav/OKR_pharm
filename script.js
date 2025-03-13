@@ -127,3 +127,6 @@ function editReview(reviewDiv) {
         textNode.replaceWith(newTextNode);
     }
 }
+
+//================================== ЛАБОРАТОРНА РОБОТА 7 ==================================
+

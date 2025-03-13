@@ -71,7 +71,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Парацетамол</td>
+                    <td class="medicine">Парацетамол</td>
                     <td>
                         <a href="./images/paracetamol.jpg" target="_blank">
                             <img src="./images/paracetamol.jpg" alt="Парацетамол">
@@ -90,7 +90,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Ібупрофен</td>
+                    <td class="medicine">Ібупрофен</td>
                     <td>
                         <a href="./images/ibyprophen.jpg" target="_blank">
                             <img src="./images/ibyprophen.jpg" alt="Ібупрофен">
@@ -102,7 +102,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Но-шпа</td>
+                    <td class="medicine">Но-шпа</td>
                     <td>
                         <a href="./images/no-shpa.jpg" target="_blank">
                             <img src="./images/no-shpa.jpg" alt="Но-шпа">
@@ -115,7 +115,9 @@
                 </tr>
             </tbody>
         </table>
-        <h3 class="headerSpan" id="search" style="cursor: pointer;">Як зробити замовлення?</h3>
+        <h3 class="headerSpan" id="search" style="cursor: pointer;"  onmouseover="highlightText(this)" onmouseout="resetText(this)">
+            Як зробити замовлення?
+        </h3>
         <div class="how-to-order">
             <ol class="how-to-order-list">
                 <li><strong>Знайдіть товар.</strong> Використовуйте пошук або каталог, щоб знайти потрібний товар, та
@@ -196,41 +198,112 @@
         document.getElementById("author-info").addEventListener("click", function () {
             showDeveloperInfo("Дрюк", "Владислав");
         });
-        // Використання методу getElementById
+        
+        // Використання події миші (mouseover/mouseout) через атрибути заголовку "Як зробити замовлення?"
         const howToOrderHeader = document.getElementById("search");
-        // Використання властивості DOM-вузла innerHTML
         howToOrderHeader.addEventListener("click", function () {
             alert(this.innerHTML + "\n(інструкція до оновленої системи замовлення ліків)");
         });
-        // Використання властивості DOM-вузла data
-        setTimeout(() => {
-            howToOrderHeader.firstChild.data = "Як придбати ліки?";
-        }, 5000);
-        // Використання властивості DOM-вузла nodeValue 
-        setTimeout(() => {
-            howToOrderHeader.firstChild.nodeValue = "Як придбати ліки \uD83E\uDD14 ? ";
-        }, 6500);
-        const paragraph = document.querySelector(".promotion-text");
-        // Використання властивості DOM-вузла textContent 
-        setTimeout(() => {
-            paragraph.textContent = " Оновлена пропозиція 🔥 ! Знижки до 50% на популярні ліки! Поспішайте, акція діє обмежений час!";
-        }, 10000);
-        // Використання властивості DOM-вузла innerHTML
-        setTimeout(() => {
-            paragraph.innerHTML = "🔥 Оновлена пропозиція! 🔥<br> Знижки до <strong><i>50%</i></strong> на популярні ліки! <br> Поспішайте, акція діє обмежений час!";
-        }, 15000);
-        setTimeout(() => {
-            const header = document.querySelector(".headerSpan");
-            header.firstChild.textContent = "Популярні ліки в Україні (березень 2025)";
-        }, 20000);
-        const howToOrderList = document.querySelector(".how-to-order");
-        // Використання властивості DOM-вузла outerHTML
-        console.log(howToOrderList.outerHTML);
-        // Використання методу querySelectorAll 
-        const categoryItems = document.querySelectorAll(".category-list li");
-        categoryItems.forEach(item => {
-            console.log(item.textContent);
+        function highlightText(element) {
+            element.style.color = "yellow";
+            element.style.textTransform = "uppercase";
+        }
+        function resetText(element) {
+            element.style.color = "";
+            element.style.textTransform = "none";
+        }
+
+        // Використання події миші (mouseover/mouseout) через властивість
+        function highlightDiv(event) {
+            const div = event.currentTarget;
+            div.style.boxShadow = "0 0 15px 5px yellow";
+            div.style.transform = "scale(1.05)";
+            div.style.transition = "all 0.3s ease";
+        }
+        function resetDiv(event) {
+            const div = event.currentTarget;
+            div.style.boxShadow = "none";
+            div.style.transform = "scale(1)";
+        }
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(category => {
+            category.onmouseover = highlightDiv;
+            category.onmouseout = resetDiv;
         });
+
+        // Призначений обробником події об’єкт за допомогою addEventListener,
+        // застосований метод handleEvent. Виведено елемент, на якому спрацював обробник, за допомогою event.currentTarget
+        const medicineHistory = {
+            "Парацетамол": "Винахідник: Гармон Нортроп Морс\nРік: 1877\nМісце: США",
+            "Ібупрофен": "Винахідник: Стюарт Адамс\nРік: 1961\nМісце: Велика Британія",
+            "Но-шпа": "Винахідник: Месарош, Сентміклоші та Цібула\nРік: 1961\nМісце: Угорщина"
+        };
+        const medicineHandler = {
+            handleEvent(event) {
+                const element = event.currentTarget;
+                const medicineName = element.textContent.trim();
+                alert(`${event.type} на елементі:\nЕлемент: ${element}\nТег: ${element.tagName}\nКлас: ${element.classList[0]}\nНазва: ${medicineName}`);
+                if (medicineHistory[medicineName]) {
+                alert(`Історична довідка про ${medicineName}:\n${medicineHistory[medicineName]}`);
+                } else {
+                alert(`Інформація про ${medicineName} відсутня в базі.`);
+                }
+            }
+        };
+        const medicineRows = document.querySelectorAll('.medicine');
+        medicineRows.forEach(row => {
+            row.addEventListener('click', medicineHandler);
+        });
+        
+        // Реалізовано підсвічування елементів списку при кліку миші. Використано event.target. Обробник onclick
+        // застосовано для списку, а не для кожного елементу.
+        const orderList = document.querySelector('.how-to-order-list');
+        orderList.onclick = function(event) {
+            if (event.target.tagName === 'LI' || event.target.closest('li')) {
+                const clickedItem = event.target.closest('li');
+                if (clickedItem.classList.contains('highlight1')) {
+                clickedItem.classList.remove('highlight1');
+                } 
+                else {
+                    document.querySelectorAll('.how-to-order-list li').forEach(li => {
+                        li.classList.remove('highlight1');
+                    });
+                    clickedItem.classList.add('highlight1');
+                }
+            }  
+        };
+
+        // ============================= ЛАБОРАТОРНА РОБОТА 6 =============================  
+    
+        // // Використання властивості DOM-вузла data
+        // setTimeout(() => {
+        //     howToOrderHeader.firstChild.data = "Як придбати ліки?";
+        // }, 5000);
+        // // Використання властивості DOM-вузла nodeValue
+        // setTimeout(() => {
+        //     howToOrderHeader.firstChild.nodeValue = "Як придбати ліки \uD83E\uDD14 ? ";
+        // }, 6500);
+        // const paragraph = document.querySelector(".promotion-text");
+        // // Використання властивості DOM-вузла textContent
+        // setTimeout(() => {
+        //     paragraph.textContent = " Оновлена пропозиція 🔥 ! Знижки до 50% на популярні ліки! Поспішайте, акція діє обмежений час!";
+        // }, 10000);
+        // // Використання властивості DOM-вузла innerHTML
+        // setTimeout(() => {
+        //     paragraph.innerHTML = "🔥 Оновлена пропозиція! 🔥<br> Знижки до <strong><i>50%</i></strong> на популярні ліки! <br> Поспішайте, акція діє обмежений час!";
+        // }, 15000);
+        // setTimeout(() => {
+        //     const header = document.querySelector(".headerSpan");
+        //     header.firstChild.textContent = "Популярні ліки в Україні (березень 2025)";
+        // }, 20000);
+        // const howToOrderList = document.querySelector(".how-to-order");
+        // // Використання властивості DOM-вузла outerHTML
+        // console.log(howToOrderList.outerHTML);
+        // // Використання методу querySelectorAll
+        // const categoryItems = document.querySelectorAll(".category-list li");
+        // categoryItems.forEach(item => {
+        //     console.log(item.textContent);
+        // });
     </script>
 </body>
 
