@@ -128,5 +128,74 @@ function editReview(reviewDiv) {
     }
 }
 
-//================================== ЛАБОРАТОРНА РОБОТА 7 ==================================
 
+
+// ЛАБОРАТОРНА РОБОТА 8 -- ЗАВДАННЯ 1
+
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".promotion-container");
+    const banners = document.querySelectorAll(".promotion-banner");
+    const SHADOW_CONTAINER = "0 0 10px 2px blue";
+    const SHADOW_CONTAINER_ALT = "0 0 10px 2px yellow";
+
+    banners.forEach((banner) => {
+        banner.addEventListener("mouseover", (event) => {
+            const targetBanner = event.target.closest(".promotion-banner");
+            if (!targetBanner) return;
+            const relatedTarget = event.relatedTarget;
+            const isStillInBanners = relatedTarget && relatedTarget.closest(".promotion-banner");
+            targetBanner.style.boxShadow = "0 0 15px 5px yellow";
+            targetBanner.style.transform = "scale(1.05)";
+            targetBanner.style.transition = "all 0.3s ease";
+            banners.forEach((other) => {
+                if (other !== targetBanner) {
+                    other.style.filter = "grayscale(100%)";
+                    other.style.boxShadow = "none";
+                    other.style.transform = "scale(1)";
+                }
+            });
+            if (!isStillInBanners) {
+                console.log("- - - - - MOUSEOVER - - - - - - - ");
+                console.log("Елемент, з якого курсор пішов:", relatedTarget ? relatedTarget.tagName : "none");
+                console.log("Елемент, на який курсор перейшов:", targetBanner ? targetBanner.tagName : "none");
+            }
+        });
+        banner.addEventListener("mouseout", (event) => {
+            const targetBanner = event.target.closest(".promotion-banner");
+            if (!targetBanner) return;
+            const relatedTarget = event.relatedTarget;
+            const isStillInBanners = relatedTarget && relatedTarget.closest(".promotion-banner");
+            banners.forEach((other) => {
+                other.style.filter = "none";
+                other.style.boxShadow = "";
+                other.style.transform = "scale(1)";
+            });
+            if (isStillInBanners) return;
+            if (!isStillInBanners) {
+                console.log("- - - - - MOUSEOUT - - - - - - - ");
+                console.log("Елемент, з якого курсор пішов:", targetBanner ? targetBanner.tagName : "none");
+                console.log("Елемент, на який курсор перейшов:", relatedTarget ? relatedTarget.tagName : "none");
+            }
+
+            targetBanner.style.boxShadow = "0 0 20px 2px blue";
+            setTimeout(() => {
+                targetBanner.style.boxShadow = "";
+            }, 200);
+        });
+    });
+    container.addEventListener("mouseleave", () => {
+        banners.forEach((banner) => {
+            banner.style.boxShadow = SHADOW_CONTAINER;
+        });
+        setTimeout(() => {
+            banners.forEach((banner) => {
+                banner.style.boxShadow = SHADOW_CONTAINER_ALT;
+            });
+            setTimeout(() => {
+                banners.forEach((banner) => {
+                    banner.style.boxShadow = "";
+                });
+            }, 350);
+        }, 350);
+    });
+});

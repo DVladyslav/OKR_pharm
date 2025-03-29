@@ -50,8 +50,9 @@
             <span class="circle" data-rating="5">⚪</span>
         </div>
         <div id="rating-result" class="rating-result"></div>
-        
+
         <h3 class="headerSpan">Найближчі наші партнери</h3>
+
         <table class="pharmacy-table">
             <colgroup>
                 <col class="light-blue">
@@ -72,18 +73,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="left-align">Аптека №1</td>
+                    <td>
+                        <div class="pharmacy-name-wrapper">
+                            <span class="pharmacy-name" data-image="./images/pharmacy1.jpg">Аптека №1</span>
+                        </div>
+                    </td>
                     <td class="left-align">Хрещатик, 22</td>
                     <td class="center-align">Київ</td>
                     <td class="right-align" rowspan="2">08:00 - 22:00</td>
                 </tr>
                 <tr>
-                    <td class="left-align">Здорова Родина</td>
+                    <td>
+                        <div class="pharmacy-name-wrapper">
+                            <span class="pharmacy-name" data-image="./images/pharmacyhealthfamily.jpg">Здорова
+                                Родина</span>
+                        </div>
+                    </td>
                     <td class="left-align">Дерибасівська, 10</td>
                     <td class="center-align">Київ</td>
                 </tr>
                 <tr>
-                    <td class="left-align">Аптека Поділля</td>
+                    <td>
+                        <div class="pharmacy-name-wrapper">
+                            <span class="pharmacy-name" data-image="./images/pharmacygoodday.jpg">Аптека доброго
+                                дня</span>
+                        </div>
+                    </td>
                     <td class="left-align">Соборна, 5</td>
                     <td class="center-align">Київ</td>
                     <td class="right-align">Цілодобово</td>
@@ -95,6 +110,12 @@
                 </tr>
             </tfoot>
         </table>
+        <div class="drop-area">1. Сюди можна перетягнути назву аптеки.</div>
+        <div class="result-container">
+            <span class="placeholder-text">2. Тут відобразиться фото будівлі аптеки.</span>
+            <img src="" alt="Аптека" class="pharmacy-image" id="pharmacy-image">
+        </div>
+
         <p id="word-container">
             Не втратьте шанс отримати знижку 10% на будь-які ліки від наших найближчих партнерів. Для цього виконайте
             певну дію на цій сторінці. Підказка: <span data-counter="0" class="persistent-word"
@@ -155,7 +176,7 @@
                 }
                 if (clickedWord.id === 'badWord' && counter >= 5) {
                     alert('Ви натискали на слово "Ледачість" 5 разів!\nМоже вам краще спробувати натискати на "Наполегливість"!');
-                    clickedWord.setAttribute('data-counter', 0); 
+                    clickedWord.setAttribute('data-counter', 0);
                 }
             }
         });
@@ -172,6 +193,104 @@
         // setTimeout(() => {
         //     location.href = "https://www.who.int/";
         // }, 35000);
+
+
+
+
+
+
+        // ЛАБОРАТОРНА РОБОТА 8 -- ЗАВДАННЯ 2, ВАРІАНТ 2
+
+        const pharmacyNames = document.querySelectorAll(".pharmacy-name");
+        const dropArea = document.querySelector(".drop-area");
+        const pharmacyImage = document.getElementById("pharmacy-image");
+        const placeholderText = document.querySelector(".placeholder-text"); 
+        let selectedPharmacy = null;
+        let offsetX, offsetY;
+
+        pharmacyNames.forEach(name => {
+            name.addEventListener('mousedown', function (event) {
+                selectedPharmacy = name.cloneNode(true);
+                selectedPharmacy.dataset.image = name.getAttribute("data-image");
+                document.body.appendChild(selectedPharmacy);
+                const computedStyle = window.getComputedStyle(name);
+                selectedPharmacy.style.position = 'absolute';
+                selectedPharmacy.style.zIndex = 1000;
+                selectedPharmacy.style.cursor = 'grabbing';
+                selectedPharmacy.style.width = computedStyle.width;
+                selectedPharmacy.style.height = computedStyle.height;
+                selectedPharmacy.style.padding = computedStyle.padding;
+                selectedPharmacy.style.backgroundColor = computedStyle.backgroundColor;
+                selectedPharmacy.style.color = computedStyle.color;
+                selectedPharmacy.style.borderRadius = computedStyle.borderRadius;
+                selectedPharmacy.style.textAlign = computedStyle.textAlign;
+                selectedPharmacy.style.display = 'inline-block';
+                const rect = name.getBoundingClientRect();
+
+                offsetX = event.clientX - rect.left;
+                offsetY = event.clientY - rect.top;
+
+                selectedPharmacy.style.left = rect.left + 'px';
+                selectedPharmacy.style.top = rect.top + 'px';
+                moveAt(event.pageX, event.pageY);
+                dropArea.classList.add("highlight");
+                event.preventDefault();
+            });
+        });
+
+        function moveAt(pageX, pageY) {
+            if (selectedPharmacy) {
+                selectedPharmacy.style.left = (pageX - offsetX) + 'px';
+                selectedPharmacy.style.top = (pageY - offsetY) + 'px';
+            }
+        }
+        document.addEventListener('mousemove', function (event) {
+            if (selectedPharmacy) {
+                event.preventDefault();
+                moveAt(event.pageX, event.pageY);
+            }
+        });
+        document.addEventListener('mouseup', function (event) {
+            if (selectedPharmacy) {
+                const dropRect = dropArea.getBoundingClientRect();
+                const pharmacyRect = selectedPharmacy.getBoundingClientRect();
+                if (
+                    pharmacyRect.left < dropRect.right &&
+                    pharmacyRect.right > dropRect.left &&
+                    pharmacyRect.top < dropRect.bottom &&
+                    pharmacyRect.bottom > dropRect.top
+                ) {
+                    if (dropArea.querySelector('.dropped-pharmacy')) {
+                        selectedPharmacy.remove();
+                        selectedPharmacy = null;
+                        dropArea.classList.remove("highlight");
+                        return;
+                    }
+                    dropArea.textContent = '';
+                    const droppedContainer = document.createElement('div');
+                    droppedContainer.classList.add('dropped-pharmacy');
+                    droppedContainer.textContent = selectedPharmacy.textContent;
+                    const removeBtn = document.createElement('span');
+                    removeBtn.classList.add('remove-btn');
+                    removeBtn.textContent = '×';
+                    droppedContainer.appendChild(removeBtn);
+                    dropArea.appendChild(droppedContainer);
+                    pharmacyImage.src = selectedPharmacy.dataset.image;
+                    pharmacyImage.style.display = "block";
+                    placeholderText.style.display = "none"; 
+                    removeBtn.addEventListener('click', () => {
+                        droppedContainer.remove();
+                        dropArea.textContent = '1. Сюди можна перетягнути назву аптеки.';
+                        pharmacyImage.style.display = 'none';
+                        placeholderText.style.display = "block";
+                    });
+                }
+                selectedPharmacy.remove();
+                selectedPharmacy = null;
+                dropArea.classList.remove("highlight");
+            }
+        });
+
     </script>
 </body>
 

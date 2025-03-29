@@ -185,11 +185,34 @@
                 </dl>
             </div>
         </div>
-
+        <h3 class="headerSpan">Отримати промокод</h3>
+        <p style="text-align: center;">Складіть речення, перетягнувши відповідні слова до пустих комірок, 
+            та натисніть "Перевірити", щоб отримати промокод на покупку ліків:</p>
+        <div id="words">
+            <span class="word">правильно</span>
+            <span class="word">промокод,</span>
+            <span class="word">отримаєте</span>
+            <span class="word">речення.</span>
+            <span class="word">якщо</span>
+            <span class="word">Ви</span>
+            <span class="word">складете</span>
+        </div>
+        <div class="dropzone" id="sentence">
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+            <div class="word-slot"></div>
+        </div>
+        <button onclick="checkSentence()">Перевірити</button>
+        <p id="result"></p>
     </main>
     <footer>
         <p id="author-info" style="cursor: pointer;">Автор документу: ІС-31 Дрюк Владислав</p>
     </footer>
+    <script src="./script.js"></script>
     <script>
         //Функція виводу інформації про розробника сторінки з параметрами (прізвище, імя, посада).
         function showDeveloperInfo(lastName, firstName, position = "WEB-розробник") {
@@ -272,7 +295,134 @@
                 }
             }  
         };
+        
+        // ЛАБОРАТОРНА РОБОТА 8 -- ЗАВДАННЯ 2, ВАРІАНТ 1
+        let words = document.querySelectorAll('#words .word');
+        let dropzone = document.getElementById('sentence');
+        let wordSlots = document.querySelectorAll('.word-slot');
+        let selectedWord = null;
+        let offsetX, offsetY;
 
+        words.forEach(word => {
+            word.addEventListener('mousedown', function (event) {
+                selectedWord = word.cloneNode(true);
+                selectedWord.dataset.originalId = word.textContent;
+                document.body.appendChild(selectedWord);
+                selectedWord.style.position = 'absolute';
+                selectedWord.style.zIndex = 1000;
+                offsetX = event.clientX - word.getBoundingClientRect().left;
+                offsetY = event.clientY - word.getBoundingClientRect().top;
+                moveAt(event.pageX, event.pageY);
+            });
+        });
+
+        function moveAt(pageX, pageY) {
+            if (selectedWord) {
+                selectedWord.style.left = pageX - offsetX + 'px';
+                selectedWord.style.top = pageY - offsetY + 'px';
+                wordSlots.forEach(slot => {
+                    slot.classList.remove('highlight-slot');
+                });
+                let closestSlot = null;
+                let minDistance = Infinity;
+
+                wordSlots.forEach(slot => {
+                    const slotRect = slot.getBoundingClientRect();
+                    const wordRect = selectedWord.getBoundingClientRect();
+
+                    if (
+                        wordRect.left < slotRect.right &&
+                        wordRect.right > slotRect.left &&
+                        wordRect.top < slotRect.bottom &&
+                        wordRect.bottom > slotRect.top &&
+                        !slot.querySelector('.word')
+                    ) {
+                        const slotCenterX = slotRect.left + slotRect.width / 2;
+                        const slotCenterY = slotRect.top + slotRect.height / 2;
+                        const wordCenterX = wordRect.left + wordRect.width / 2;
+                        const wordCenterY = wordRect.top + wordRect.height / 2;
+                        const distance = Math.sqrt(
+                            Math.pow(slotCenterX - wordCenterX, 2) +
+                            Math.pow(slotCenterY - wordCenterY, 2)
+                        );
+
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestSlot = slot;
+                        }
+                    }
+                });
+
+                if (closestSlot) {
+                    closestSlot.classList.add('highlight-slot');
+                }
+            }
+        }
+
+        document.addEventListener('mousemove', function (event) {
+            if (selectedWord) {
+                event.preventDefault();
+                moveAt(event.pageX, event.pageY);
+            }
+        });
+
+        document.addEventListener('mouseup', function (event) {
+            if (selectedWord) {
+                const highlightedSlot = document.querySelector('.word-slot.highlight-slot');
+                let placed = false;
+                if (highlightedSlot) {
+                    const slotRect = highlightedSlot.getBoundingClientRect();
+                    const wordRect = selectedWord.getBoundingClientRect();
+                    if (
+                        wordRect.left < slotRect.right &&
+                        wordRect.right > slotRect.left &&
+                        wordRect.top < slotRect.bottom &&
+                        wordRect.bottom > slotRect.top &&
+                        !highlightedSlot.querySelector('.word')
+                    ) {
+                        selectedWord.style.position = 'static';
+                        selectedWord.style.zIndex = '';
+                        highlightedSlot.appendChild(selectedWord);
+                        placed = true;
+                    }
+                }
+
+                wordSlots.forEach(slot => {
+                    slot.classList.remove('highlight-slot');
+                });
+
+                if (!placed) {
+                    selectedWord.remove();
+                }
+                selectedWord = null;
+            }
+        });
+
+        function checkSentence() {
+            let sentenceSlots = document.querySelectorAll('.word-slot');
+            let sentenceWords = Array.from(sentenceSlots).map(slot => slot.textContent.trim());
+            let correctSentence = ["Ви", "отримаєте", "промокод,", "якщо", "правильно", "складете", "речення."];
+            let result = document.getElementById('result');
+            if (JSON.stringify(sentenceWords) === JSON.stringify(correctSentence)) {
+                result.style.color = 'green';
+                result.innerText = "Вітаємо! Ваш промокод: PROMO2025";
+                words.forEach(word => {
+                    word.remove();
+                });
+            } else {
+                result.style.color = 'red';
+                result.textContent = "Речення складено неправильно. Спробуйте ще раз!";
+                wordSlots.forEach(slot => {
+                    const word = slot.querySelector('.word');
+                    if (word) word.remove();
+                });
+                setTimeout(() => {
+                    result.textContent = "";
+                }, 3000);
+            }
+        }
+
+        
         // ============================= ЛАБОРАТОРНА РОБОТА 6 =============================  
     
         // // Використання властивості DOM-вузла data
@@ -304,6 +454,7 @@
         // categoryItems.forEach(item => {
         //     console.log(item.textContent);
         // });
+
     </script>
 </body>
 
